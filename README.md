@@ -71,9 +71,51 @@ NOTE: We can use multiple decorators on the same function, one per line, dependi
  * Debug mode: off
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 
-5. To open the default browser to the rendered page, Ctrl+click the http://127.0.0.1:5000/ URL in the terminal.
+5. To open the default browser to the rendered page, Ctrl+click the http://127.0.0.1:5000/ URL in the terminal.We could see a statement as,
+  
+         Hello,Flask!!
+         
+ RUN THE APP IN THE DEBUGGER :
+ 
+      Debugging gives the opportunity to pause a running program on a particular line of code. When a program is paused, we can examine variables, run code in the Debug Console panel, and otherwise take advantage of the features described on Debugging. Running the debugger also automatically saves any modified files before the debugging session begins.
+
+1. Replace the contents of app.py with the following code, which adds a second route and function that can step through in the debugger:
+
+import re
+from datetime import datetime
+
+from flask import Flask
+
+app = Flask(__name__)
 
 
+@app.route("/")
+def home():
+    return "Hello, Flask!"
+
+
+@app.route("/hello/<name>")
+def hello_there(name):
+    now = datetime.now()
+    formatted_now = now.strftime("%A, %d %B, %Y at %X")
+
+    # Filter the name argument to letters only using regular expressions. URL arguments
+    # can contain arbitrary text, so we restrict to safe characters only.
+    match_object = re.match("[a-zA-Z]+", name)
+
+    if match_object:
+        clean_name = match_object.group(0)
+    else:
+        clean_name = "Friend"
+
+    content = "Hello there, " + clean_name + "! It's " + formatted_now
+    return content
+
+
+2. Set a breakpoint at the first line of code in the hello_there function (now = datetime.now()) and switch to RUN the code with debugging mode,and we will be able to see the statement in the browser as,
+
+        Hello there, Ram! It's Monday, 20 March, 2022 at 20:45:30
+        
 
 
 
