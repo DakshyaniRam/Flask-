@@ -83,16 +83,12 @@ NOTE: We can use multiple decorators on the same function, one per line, dependi
 
 import re
 from datetime import datetime
-
 from flask import Flask
-
 app = Flask(__name__)
-
 
 @app.route("/")
 def home():
     return "Hello, Flask!"
-
 
 @app.route("/hello/<name>")
 def hello_there(name):
