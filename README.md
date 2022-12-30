@@ -81,17 +81,17 @@ NOTE: We can use multiple decorators on the same function, one per line, dependi
 
 1. Replace the contents of app.py with the following code, which adds a second route and function that can step through in the debugger:
 
-import re
-from datetime import datetime
-from flask import Flask
-app = Flask(__name__)
-
-@app.route("/")
-def home():
+    import re
+    from datetime import datetime
+    from flask import Flask
+    app = Flask(__name__)
+    
+    @app.route("/")
+    def home():
     return "Hello, Flask!"
 
-@app.route("/hello/<name>")
-def hello_there(name):
+    @app.route("/hello/<name>")
+    def hello_there(name):
     now = datetime.now()
     formatted_now = now.strftime("%A, %d %B, %Y at %X")
 
