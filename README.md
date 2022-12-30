@@ -82,31 +82,35 @@ NOTE: We can use multiple decorators on the same function, one per line, dependi
 1. Replace the contents of app.py with the following code, which adds a second route and function that can step through in the debugger:
 
     import re
-    from datetime import datetime
-    from flask import Flask
-    app = Flask(__name__)
-    
-    @app.route("/")
-    def home():
-    return "Hello, Flask!"
+     from datetime import datetime
 
-    @app.route("/hello/<name>")
-    def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
+     from flask import Flask
+   
+     app = Flask(__name__)
 
-    # Filter the name argument to letters only using regular expressions. URL arguments
-    # can contain arbitrary text, so we restrict to safe characters only.
-    match_object = re.match("[a-zA-Z]+", name)
 
-    if match_object:
-        clean_name = match_object.group(0)
-    else:
-        clean_name = "Friend"
+     @app.route("/")
+     def home():
+        return "Hello, Flask!"
 
-    content = "Hello there, " + clean_name + "! It's " + formatted_now
-    return content
 
+     @app.route("/hello/<name>")
+     def hello_there(name):
+         now = datetime.now()
+         formatted_now = now.strftime("%A, %d %B, %Y at %X")
+
+        # Filter the name argument to letters only using regular expressions. URL arguments
+        # can contain arbitrary text, so we restrict to safe characters only.
+          match_object = re.match("[a-zA-Z]+", name)
+ 
+         if match_object:
+             clean_name = match_object.group(0)
+         else:
+             clean_name = "Friend"
+
+         content = "Hello there, " + clean_name + "! It's " + formatted_now
+         return content
+	
 
 2. Set a breakpoint at the first line of code in the hello_there function (now = datetime.now()) and switch to RUN the code with debugging mode,and we will be able to see the statement in the browser as,
 
