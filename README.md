@@ -1,7 +1,7 @@
 # Flask-
 POC of Flask Framework-Python
 
-Follow the below commands to create a simple flask application to run with and without debug mode.
+Follow the below commands to create a simple flask application : 
 
 PREREQUISITES :
 
